@@ -1,5 +1,16 @@
 <script setup lang="ts">
-//--Prop Handling
+//-- Emit Handling
+const emit = defineEmits(["deleteNote", "cancelNote"]);
+
+//-- Delete note
+const deleteNote = () => {
+  emit("deleteNote");
+};
+
+//-- Cancel note
+const cancelNote = () => {
+  emit("cancelNote");
+};
 </script>
 
 <template>
@@ -16,11 +27,13 @@
       </div>
       <div class="flex flex-col gap-[.5rem]">
         <button
+          @click="deleteNote"
           class="w-[100%] py-[.25rem] font-[500] bg-green-600 text-textLight rounded-[3px] md:py-[.375rem] md:text-[1.125rem]"
         >
           Yes
         </button>
         <button
+          @click="cancelNote"
           class="w-[100%] py-[.25rem] font-[500] bg-red-700 text-textLight rounded-[3px] md:py-[.375rem] md:text-[1.125rem]"
         >
           No
