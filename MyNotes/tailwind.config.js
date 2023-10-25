@@ -17,6 +17,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        bgModalOverlay: "#303030aa",
         textLight: "#f4f4f4",
         textSemiLight: "#dddddd",
         textNormal: "#707070",
