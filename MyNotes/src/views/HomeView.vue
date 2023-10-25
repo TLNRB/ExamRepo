@@ -2,8 +2,9 @@
 /*----- Impor Components -----*/
 import Note from "@/components/Note.vue";
 import DeleteNote from "@/components/DeleteNote.vue";
+import AddNote from "@/components/AddNote.vue";
 /*----- Impor Database -----*/
-import notesDB from "../data/notesDB.ts";
+import notesDB from "@/data/notesDB.js";
 </script>
 
 <template>
@@ -25,6 +26,11 @@ import notesDB from "../data/notesDB.ts";
     class="my-[4rem] flex flex-wrap gap-[1rem] justify-center items-center px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] lg:my-[3rem] xl:px-[8rem] xxxl:px-[10rem] xxxxl:px-[20rem]"
   >
     <Note v-for="note in notesDB" :key="note.id" :note="note" />
+    <div
+      class="h-[100%] w-[100%] z-[15] fixed top-0 left-0 right-0 bottom-0 bg-bgModalOverlay"
+    >
+      <AddNote />
+    </div>
     <div
       class="hidden h-[100%] w-[100%] z-[15] fixed top-0 left-0 right-0 bottom-0 bg-bgModalOverlay"
     >
