@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+/*----- Impor Components -----*/
+import Note from "@/components/Note.vue";
+</script>
 
 <template>
   <header
@@ -15,6 +18,7 @@
       +
     </div>
   </header>
+  <Note />
 </template>
 
 <style scoped></style>
