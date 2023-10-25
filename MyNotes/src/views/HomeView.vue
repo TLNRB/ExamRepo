@@ -1,6 +1,8 @@
 <script setup lang="ts">
 /*----- Impor Components -----*/
 import Note from "@/components/Note.vue";
+/*----- Impor Database -----*/
+import notesDB from "../data/notesDB.ts";
 </script>
 
 <template>
@@ -18,7 +20,11 @@ import Note from "@/components/Note.vue";
       +
     </div>
   </header>
-  <Note />
+  <main
+    class="my-[4rem] flex flex-wrap gap-[1rem] justify-center items-center px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] lg:my-[3rem] xl:px-[8rem] xxxl:px-[10rem] xxxxl:px-[20rem]"
+  >
+    <Note v-for="note in notesDB" :key="note.id" :note="note" />
+  </main>
 </template>
 
 <style scoped></style>
