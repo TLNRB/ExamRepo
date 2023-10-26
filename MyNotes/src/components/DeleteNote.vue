@@ -27,12 +27,14 @@ const cancelNote = () => {
       </div>
       <div class="flex flex-col gap-[.5rem]">
         <button
+          id="yesButton"
           @click="deleteNote"
           class="w-[100%] py-[.25rem] font-[500] bg-green-600 text-textLight rounded-[3px] md:py-[.375rem] md:text-[1.125rem]"
         >
           Yes
         </button>
         <button
+          id="noButtton"
           @click="cancelNote"
           class="w-[100%] py-[.25rem] font-[500] bg-red-700 text-textLight rounded-[3px] md:py-[.375rem] md:text-[1.125rem]"
         >

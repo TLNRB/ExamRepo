@@ -22,6 +22,7 @@ const deleteNote = () => {
         {{ note.dateDay }}/{{ note.dateMonth }}/{{ note.dateYear }}
       </div>
       <font-awesome-icon
+        id="deleteNoteButton"
         @click="deleteNote"
         :icon="['fas', 'trash-can']"
         class="cursor-pointer hover:scale-[115%] duration-[.2s] ease-in-out"

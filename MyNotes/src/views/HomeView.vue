@@ -4,21 +4,19 @@ import { ref, reactive, onMounted } from "vue";
 import Note from "@/components/Note.vue";
 import DeleteNote from "@/components/DeleteNote.vue";
 import AddNote from "@/components/AddNote.vue";
-/*----- Impor Database -----*/
+/*----- Store Handling -----*/
+import { useStoreNotes } from "../stores/storeNotes";
+const storeNotes = useStoreNotes();
 
 /*===== Note handling =====*/
-type id = string | number;
-
 interface Note {
-  id: id;
+  id: string;
   text: string;
   dateDay: number;
   dateMonth: number;
   dateYear: number;
   color: string;
 }
-
-let notesDB: Note[] = reactive([]);
 
 //-- Data binding
 const noteContent: Note = reactive({
@@ -58,22 +56,20 @@ const closeAddNoteModal = (): void => {
 
 const addNote = (): void => {
   const curentdate = new Date();
-  notesDB.push({
-    id: curentdate.getTime(), // id is the current time the note is created
-    text: noteContent.text,
-    dateDay: curentdate.getDate(),
-    dateMonth: curentdate.getMonth() + 1,
-    dateYear: curentdate.getFullYear(),
-    color: getRandomColor(),
-  });
+  noteContent.id = "";
+  (noteContent.dateDay = curentdate.getDate()),
+    (noteContent.dateMonth = curentdate.getMonth() + 1),
+    (noteContent.dateYear = curentdate.getFullYear()),
+    (noteContent.color = getRandomColor()),
+    storeNotes.addNotes(noteContent);
   closeAddNoteModal();
 };
 
 //-- Delete note
 const deleteNoteModal = ref(false);
-let deleteNoteTempID: id = "";
+let deleteNoteTempID: string = "";
 
-const openDeleteNoteModal = (id: id): void => {
+const openDeleteNoteModal = (id: string): void => {
   deleteNoteModal.value = true;
   deleteNoteTempID = id;
 };
@@ -84,10 +80,7 @@ const closeDeleteNoteModal = (): void => {
 };
 
 const deleteNote = (): void => {
-  const filteredNotes = notesDB.filter(
-    (note: Note) => note.id != deleteNoteTempID
-  );
-  notesDB = filteredNotes;
+  storeNotes.deleteNote(deleteNoteTempID);
   closeDeleteNoteModal();
 };
 
@@ -104,6 +97,7 @@ onMounted(() => {});
       My Notes
     </h1>
     <div
+      id="addNoteButton"
       @click="openAddNoteModal"
       class="w-[40px] h-[40px] flex justify-center items-center bg-textDark text-textLight text-[1rem] font-regular rounded-full drop-shadow-md cursor-pointer hover:scale-[115%] duration-[.2s] ease-in-out xxxl:w-[50px] xxxl:h-[50px] xxxl:text-[1.125rem]"
     >
@@ -114,7 +108,7 @@ onMounted(() => {});
     class="my-[4rem] flex flex-wrap gap-[1rem] justify-center items-center px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] lg:my-[6rem] xl:px-[8rem] xxxl:px-[10rem] xxxxl:px-[20rem]"
   >
     <Note
-      v-for="note in notesDB"
+      v-for="note in storeNotes.notes"
       :key="note.id"
       :note="note"
       @deleteNote="openDeleteNoteModal"
