@@ -97,6 +97,7 @@ onMounted(() => {});
       My Notes
     </h1>
     <div
+      id="addNoteButton"
       @click="openAddNoteModal"
       class="w-[40px] h-[40px] flex justify-center items-center bg-textDark text-textLight text-[1rem] font-regular rounded-full drop-shadow-md cursor-pointer hover:scale-[115%] duration-[.2s] ease-in-out xxxl:w-[50px] xxxl:h-[50px] xxxl:text-[1.125rem]"
     >
