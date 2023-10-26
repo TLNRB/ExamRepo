@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-fixture`MyNotes test`.page("http://localhost:5173/");
+fixture`MyNotes test`.page("./dist/index.html");
 
 test("Create new note", async (t) => {
   await t
@@ -52,5 +52,3 @@ test("Delete note", async (t) => {
     .expect(Selector("#app > main > section").count)
     .eql(0);
 });
-
-//test
