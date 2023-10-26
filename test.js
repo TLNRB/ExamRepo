@@ -8,7 +8,7 @@ test("Create new note", async (t) => {
     .expect(Selector("#app > main > section").count)
     .eql(0)
     // Press the button to add to do
-    .click(Selector("#openAddNoteModal"))
+    .click(Selector("#addNoteButton"))
     // Focus textarea
     .click(Selector("#app > main > div > section > form > textarea"))
     // Type text
