@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-fixture`MyNotes test`.page("./dist/index.html");
+fixture`MyNotes test`.page("https://tlnrb.dk/MyNotes/");
 
 test("Create new note", async (t) => {
   await t
