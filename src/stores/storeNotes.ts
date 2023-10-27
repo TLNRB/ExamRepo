@@ -66,7 +66,7 @@ export const useStoreNotes = defineStore("storeNotes", {
       });
     },
     // Delete Notes
-    async deleteNote(id: NoteId) {
+    async deleteNote(id: string) {
       await deleteDoc(doc(notesCollectionRef, id));
     },
   },
