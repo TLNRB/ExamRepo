@@ -9,15 +9,15 @@ import { useStoreNotes } from "../stores/storeNotes";
 const storeNotes = useStoreNotes();
 
 /*===== Note handling =====*/
-type NoteId = string | number;
+type NoteColor = string | number;
 
 interface Note {
-  id: NoteId;
+  id: string;
   text: string;
   dateDay: number;
   dateMonth: number;
   dateYear: number;
-  color: string;
+  color: NoteColor;
 }
 
 //-- Data binding
@@ -41,7 +41,7 @@ const valueClear = (): void => {
 };
 
 //-- Get random color
-function getRandomColor(): string {
+function getRandomColor(): NoteColor {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 
@@ -69,9 +69,9 @@ const addNote = (): void => {
 
 //-- Delete note
 const deleteNoteModal = ref(false);
-let deleteNoteTempID: NoteId = "";
+let deleteNoteTempID: string = "";
 
-const openDeleteNoteModal = (id: NoteId): void => {
+const openDeleteNoteModal = (id: string): void => {
   deleteNoteModal.value = true;
   deleteNoteTempID = id;
 };

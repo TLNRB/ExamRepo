@@ -11,15 +11,15 @@ import { db } from "../firebase/firebase.js";
 
 const notesCollectionRef = collection(db, "notes");
 
-type NoteId = string | number;
+type NoteColor = string | number;
 
 interface Note {
-  id: NoteId;
+  id: string;
   text: string;
   dateDay: number;
   dateMonth: number;
   dateYear: number;
-  color: string;
+  color: NoteColor;
 }
 
 interface NotesState {
