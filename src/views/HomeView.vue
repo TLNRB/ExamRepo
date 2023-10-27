@@ -9,8 +9,10 @@ import { useStoreNotes } from "../stores/storeNotes";
 const storeNotes = useStoreNotes();
 
 /*===== Note handling =====*/
+type NoteId = string | number;
+
 interface Note {
-  id: string;
+  id: NoteId;
   text: string;
   dateDay: number;
   dateMonth: number;
@@ -67,9 +69,9 @@ const addNote = (): void => {
 
 //-- Delete note
 const deleteNoteModal = ref(false);
-let deleteNoteTempID: string = "";
+let deleteNoteTempID: NoteId = "";
 
-const openDeleteNoteModal = (id: string): void => {
+const openDeleteNoteModal = (id: NoteId): void => {
   deleteNoteModal.value = true;
   deleteNoteTempID = id;
 };
