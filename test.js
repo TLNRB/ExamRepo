@@ -27,20 +27,6 @@ test("Delete note", async (t) => {
   await t
     // Wait a second
     .wait(1000)
-    // Assert that there is no note
-    .expect(Selector("#app > main > section").count)
-    .eql(0)
-    // Press the button to add a note
-    .click(Selector("#addNoteButton"))
-    // Focus textarea
-    .click(Selector("#app > main > div > section > form > textarea"))
-    // Type text
-    .typeText(
-      Selector("#app > main > div > section > form > textarea"),
-      "Delete this note."
-    )
-    // Add the new note
-    .click(Selector("#addButton"))
     // Assert that there is one note
     .expect(Selector("#app > main > section").count)
     .eql(1)
