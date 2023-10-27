@@ -11,8 +11,10 @@ import { db } from "../firebase/firebase.js";
 
 const notesCollectionRef = collection(db, "notes");
 
+type NoteId = string | number;
+
 interface Note {
-  id: string;
+  id: NoteId;
   text: string;
   dateDay: number;
   dateMonth: number;
@@ -64,7 +66,7 @@ export const useStoreNotes = defineStore("storeNotes", {
       });
     },
     // Delete Notes
-    async deleteNote(id: string) {
+    async deleteNote(id: NoteId) {
       await deleteDoc(doc(notesCollectionRef, id));
     },
   },
